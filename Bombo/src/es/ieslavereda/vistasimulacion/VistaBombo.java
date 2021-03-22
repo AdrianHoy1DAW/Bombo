@@ -38,6 +38,7 @@ public class VistaBombo extends JFrame {
 	private DefaultTableModel dtm;
 	private JLabel cambio;
 	private DefaultComboBoxModel<Integer> dim;
+	private JTextField txtFinal;
 
 
 
@@ -92,6 +93,11 @@ public class VistaBombo extends JFrame {
 					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
+		panel_2.setLayout(new MigLayout("", "[grow]", "[89.00]"));
+		
+		txtFinal = new JTextField();
+		panel_2.add(txtFinal, "cell 0 0,grow");
+		txtFinal.setColumns(10);
 		panel.setLayout(new MigLayout("", "[][51.00][][][][grow]", "[][][][][][]"));
 		
 		JLabel lblNumeroDeBolas = new JLabel("Numero de bolas");
@@ -182,4 +188,10 @@ public class VistaBombo extends JFrame {
 	public DefaultComboBoxModel<Integer> getDim() {
 		return dim;
 	}
+
+	public JTextField getTxtFinal() {
+		return txtFinal;
+	}
+	
+	
 }
