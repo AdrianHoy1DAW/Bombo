@@ -17,6 +17,8 @@ public class Controlador implements ActionListener{
 	private VistaBombo vista;
 	private Bombo bombo;
 	private ArrayList<Integer> temas;
+	private int aciertos;
+	private int errores;
 	
 	public Controlador(VistaBombo vista) {
 		
@@ -55,6 +57,9 @@ public class Controlador implements ActionListener{
 
 	private void simular() {
 		
+		aciertos = 0;
+		errores = 0;
+		
 		if(comprobacionesPrevias() == false) {
 			
 		} else {
@@ -90,7 +95,7 @@ public class Controlador implements ActionListener{
 	private Object[] rellenar(int simulacion) {
 		
 		boolean comprueba = false;
-		int aciertos = 0;
+		
 		
 		bombo.rellenar((Integer)vista.getComboBox().getSelectedItem());
 		
@@ -103,13 +108,19 @@ public class Controlador implements ActionListener{
 			obj[i +1] = bombo.sacarBola((Integer)vista.getComboBox().getSelectedItem());
 			if(temas.contains(obj[i +1])) {
 				comprueba = true;
-				aciertos ++;
+				
 			}
 			
 		}
 		
 		obj[obj.length -2] = comprueba;
 		obj[obj.length -1] = aciertos;
+		
+		if(comprueba == true) {
+			aciertos ++;
+		} else {
+			errores ++;
+		}
 		
 		
 		
@@ -153,7 +164,7 @@ public class Controlador implements ActionListener{
 	private void rellenarBajo() {
 		
 		vista.getTxtFinal().setText("Iteraciones: " + vista.getSlider().getValue() + " Numero de Temas: " + vista.getComboBox().getSelectedItem() + 
-				" Temas estudiados: " + temas.size());
+				" Temas estudiados: " + temas.size() + " aciertos: " + aciertos + " errores: " + errores);
 		
 	}
 
